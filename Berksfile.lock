@@ -1,0 +1,34 @@
+{
+  "sources": {
+    "nginx": {
+      "locked_version": "2.2.2"
+    },
+    "apt": {
+      "locked_version": "2.0.0"
+    },
+    "build-essential": {
+      "locked_version": "1.4.2"
+    },
+    "rvm": {
+      "locked_version": "0.0.4"
+    },
+    "bluepill": {
+      "locked_version": "2.3.1"
+    },
+    "rsyslog": {
+      "locked_version": "1.10.2"
+    },
+    "ohai": {
+      "locked_version": "1.1.12"
+    },
+    "runit": {
+      "locked_version": "1.5.8"
+    },
+    "yum": {
+      "locked_version": "3.1.0"
+    },
+    "yum-epel": {
+      "locked_version": "0.3.2"
+    }
+  }
+}
