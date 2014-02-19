@@ -1,0 +1,43 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: precise64
+    driver_config:
+      box: precise64
+      box_url: http://files.vagrantup.com/precise64.box
+      network:
+      - ["private_network", {ip: "33.33.33.10"}]
+
+suites:
+  - name: default
+    run_list: ["rvm::vagrant", "rvm::system", "rvm::gem_package", "nginx", "openssl", "postgresql::server", "database::postgresql"]
+    attributes:
+      rvm:
+        default_ruby: "ruby-2.1.0-p0"
+        vagrant:
+          system_chef_solo: "/opt/chef/bin/chef-solo"
+      nginx:
+        version: 1.4.1
+        dir: "/etc/nginx"
+        log_dir: "/var/log/nginx"
+        binary: "/opt/nginx-1.4.1/sbin"
+        user: "vagrant"
+        init_style: "init"
+        source:
+          modules: ["http_stub_status_module", "http_ssl_module", "http_gzip_static_module", "passenger"]
+        passenger:
+          version: "3.0.21"
+          ruby: "/usr/local/rvm/rubies/ruby-2.1.0-p0/bin/ruby"
+          root: "/usr/local/rvm/gems/ruby-2.1.0-p0/gems/passenger-3.0.21"
+      postgresql:
+        password:
+          postgres: ""
+      database:
+        create: ["uiharu_development"]
+      build_essential:
+        compiletime: true
