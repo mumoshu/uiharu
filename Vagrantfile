@@ -1,9 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# Requires us to run `vagrant plugin install vagrant-chef-zero` beforehand
-Vagrant.require_plugin "vagrant-chef-zero"
-
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
