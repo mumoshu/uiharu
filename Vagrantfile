@@ -21,6 +21,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.add_recipe 'nginx'
+    chef.add_recipe 'openssl'
+    chef.add_recipe 'postgresql::server'
+    chef.add_recipe 'database::postgresql'
     chef.json = {
       :rvm => {
         :default_ruby => 'ruby-2.1.0-p0',
@@ -43,6 +46,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           :ruby => '/usr/local/rvm/rubies/ruby-2.1.0-p0/bin/ruby',
           :root => '/usr/local/rvm/gems/ruby-2.1.0-p0/gems/passenger-3.0.21'
         }
+      },
+      :postgresql => {
+          :password => {
+              :postgres => ""
+          }
+      },
+      :database => {
+          :create => ["uiharu_development"]
+      },
+      :build_essential => {
+          :compiletime => true
       }
     }
   end
