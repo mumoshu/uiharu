@@ -18,11 +18,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
 
+  config.vm.provision :shell, :inline => 'apt-get update'
+  config.vm.provision :shell, :inline => 'apt-get install build-essential ruby1.9.1-dev --no-upgrade --yes'
+  config.vm.provision :shell, :inline => "gem install chef --version 11.4.2 --no-rdoc --no-ri --conservative"
+
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "chef-repository/cookbooks"
-    chef.run_list = [
-        "apt"
-    ]
+    chef.add_recipe 'nginx'
     chef.json = {}
   end
 end
