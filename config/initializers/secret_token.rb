@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Uiharu::Application.config.secret_key_base = 'd45a23217a423ad16f79aed216db06da88e1a9ca90d9d722518a4bd31e5c6db63bd25948339695dfa8a54a98d7094b78847fcc8434ab1201aa26b662a26930da'
+Uiharu::Application.config.secret_key_base = ENV['SECRET_KEY_BASE'] || 'd45a23217a423ad16f79aed216db06da88e1a9ca90d9d722518a4bd31e5c6db63bd25948339695dfa8a54a98d7094b78847fcc8434ab1201aa26b662a26930da'
