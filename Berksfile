@@ -6,7 +6,7 @@ site :opscode
 cookbook 'nginx'
 cookbook 'apt'
 cookbook 'build-essential'
-cookbook 'rvm'
+cookbook 'rvm', github: 'fnichol/chef-rvm'
 cookbook 'openssl'
 cookbook 'postgresql'
 cookbook 'database'

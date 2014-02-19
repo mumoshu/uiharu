@@ -20,6 +20,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :inline => "gem install chef --version 11.4.2 --no-rdoc --no-ri --conservative"
 
   config.vm.provision :chef_solo do |chef|
+    chef.add_recipe 'rvm::vagrant'
+    chef.add_recipe 'rvm::system'
+    chef.add_recipe 'rvm::gem_package'
     chef.add_recipe 'nginx'
     chef.add_recipe 'openssl'
     chef.add_recipe 'postgresql::server'
