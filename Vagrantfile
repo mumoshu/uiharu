@@ -24,6 +24,29 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.add_recipe 'nginx'
-    chef.json = {}
+    chef.json = {
+      :rvm => {
+        :default_ruby => 'ruby-2.1.0-p0',
+        :vagrant => {
+            :system_chef_solo => '/opt/chef/bin/chef-solo'
+        },
+      },
+      :nginx => {
+        :version => '1.4.1',
+        :dir => '/etc/nginx',
+        :log_dir => '/var/log/nginx',
+        :binary => '/opt/nginx-1.4.1/sbin',
+        :user => 'vagrant',
+        :init_style => 'init',
+        :source => {
+          :modules => %w(http_stub_status_module http_ssl_module http_gzip_static_module passenger)
+        },
+        :passenger => {
+          :version => '3.0.21',
+          :ruby => '/usr/local/rvm/rubies/ruby-2.1.0-p0/bin/ruby',
+          :root => '/usr/local/rvm/gems/ruby-2.1.0-p0/gems/passenger-3.0.21'
+        }
+      }
+    }
   end
 end
