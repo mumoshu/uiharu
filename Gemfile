@@ -53,4 +53,6 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+gem 'omniauth'
+
 ruby '2.1.0'
